@@ -1,0 +1,88 @@
+<html>
+
+    <body style="text-align: center;">
+
+        <div>
+            Límite: <input value="10" type="number" id="input-segundo"> (seg.)
+        </div>
+        
+        <div>Tiempo: <span id="timer-segundo" style="font-weight: bold;"> 0 </span> segundos. </div>
+        <div>
+            <button id="btn-comenzar" onclick="comenzarTimer()">Comenzar</button>
+            <button id="btn-reset" onclick="reset()">Reset</button>
+        </div>
+
+        <div>
+            <input type="password" id="input-password"> 
+            <button onclick="showPassword()">Mostrar</button>
+        </div>
+
+    </body>
+
+    <script>
+
+        var idInterval = undefined;
+        var currentSeconds = 0;
+
+        var user = {
+            'email': '',
+            'password': ''
+        };
+        
+        function comenzarTimer() {
+            var limitSeconds = parseInt(document.getElementById('input-segundo').value);
+            /*
+            setInterval(function(){},1000)
+            setTimeout(function(){},1000) 
+            clearInterval()
+            */
+            var btn = document.getElementById('btn-comenzar')
+            btn.setAttribute('text','disabled')
+            
+            this.idInterval = setInterval(function(){
+                if (currentSeconds >= limitSeconds) {
+                    this.reset();
+                    alert('Se terminó el tiempo')
+                } else {
+                    this.sumarUno()
+                }
+
+            },1000)
+            console.log('idInterval: ' + idInterval);
+        }
+
+        function reset() {
+
+            var btn = document.getElementById('btn-comenzar')
+            btn.removeAttribute('disabled')
+
+            var segundos = document.getElementById('timer-segundo')
+            segundos.innerHTML = '0'
+            clearInterval(this.idInterval)
+        }
+
+        function sumarUno() {
+            var segundos = document.getElementById('timer-segundo')
+            var valorActual = parseInt(segundos.innerHTML);
+            console.log('Valor actual: ' + valorActual)
+            valorActual = valorActual + 1;
+            segundos.innerHTML = valorActual
+            this.currentSeconds = valorActual
+        }
+
+        function showPassword() {
+            var inputPassword = document.getElementById('input-password');
+
+            var inputTypePassword = inputPassword.getAttribute('type');
+            if(inputTypePassword == 'password'){
+                inputPassword.setAttribute('type','text');
+            } else {
+                inputPassword.setAttribute('type','password');
+            }
+            
+        }
+
+    </script>
+
+
+</html>

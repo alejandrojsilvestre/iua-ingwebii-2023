@@ -1,0 +1,37 @@
+<html>
+    <body style="text-align: center;">
+
+        <div style="margin-top: 50px;">
+            Segundos: <input type="number" id="input-seconds">
+        </div>
+
+        <div style="margin-top: 25px;">
+            Tiempo: <span id="label"></span>
+        </div>
+        <div style="margin-top: 15px;">
+            <button onclick="startFn()" id="btn-start-fn">Comenzar tiempo</button>
+        </div>
+
+    </body>
+
+    <script>
+        function startFn(){
+            var btn = document.getElementById('btn-start-fn');
+            var seconds = document.getElementById('input-seconds').value;
+            btn.setAttribute('disabled','disabled')
+            var limitSecond = 0;
+            var time = document.getElementById('label');
+            time.innerHTML = seconds;
+            var intervalFn = setInterval(function(){
+                var currentSecond = parseInt(time.innerHTML);
+                time.innerHTML = currentSecond - 1;
+                if (currentSecond <= limitSecond){
+                    alert('Se acabó el tiempo!!')
+                    clearInterval(intervalFn);
+                    time.innerHTML = seconds;
+                    btn.removeAttribute('disabled')
+                }
+            },1000)
+        }
+    </script>
+</html>

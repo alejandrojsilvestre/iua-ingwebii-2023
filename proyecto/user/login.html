@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>USER | Login</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+
+<body>
+    <div class="card center">
+        <div class="title">Login</div>
+        <div class="body">
+            <form>
+                <div>
+                    <label>Usuario</label>
+                    <input id="username" type="text" placeholder="Ingresá tu usuario">
+                </div>
+                <div>
+                    <label>Contraseña</label>
+                    <input id="password" type="password" placeholder="Ingresá tu contraseña">
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <button class="link btn-actions" name="btns">
+                <a href="index.html">Volver</a>
+            </button>
+            <button class="primary btn-actions" name="btns" onclick="login()">
+                <a>Login</a>
+            </button>
+        </div>
+        <div class="actions center">
+            <div>------- o -------</div>
+            <button class="link">
+                <a href="signup.html">Registrarme</a>
+            </button>
+        </div>
+    </div>
+</body>
+<script>
+    let user = {
+        username: '',
+        password: ''
+    };
+
+    function login() {
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+
+        if (username == '') {
+            alert('Falta completar usuario')
+        } else if (password == '') {
+            alert('Falta completar password')
+        } else {
+            user.username = username;
+            user.password = password;
+            localStorage.setItem('user', JSON.stringify(user))
+        }
+    }
+
+</script>
+
+</html>
